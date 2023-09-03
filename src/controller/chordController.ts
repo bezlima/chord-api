@@ -8,8 +8,6 @@ async function getChordController(req: express.Request, res: express.Response) {
 
         const chordReturn = await getChord(validData)
 
-        // console.log(chordReturn)
-
         res.status(200).send({
             cipher: chordReturn,
         })
