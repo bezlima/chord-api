@@ -52,7 +52,7 @@ npm run dev
 | `artist`  | `string` | **Obrigatório**. |
 | `music`   | `string` | **Obrigatório**. |
 
-## exemplo de requisição fetch:
+#### Exemplo de requisição fetch:
 
 ```ts
 fetch(`http://localhost:8000/api/chord/skank/sutilmente/`)
@@ -70,7 +70,7 @@ fetch(`http://localhost:8000/api/chord/skank/sutilmente/`)
     })
 ```
 
-## exemplo de requisição axios:
+#### Exemplo de requisição axios:
 
 ```ts
 axios
@@ -83,7 +83,7 @@ axios
     })
 ```
 
-## exemplo de uso em ReactJS:
+#### Exemplo de uso em ReactJS:
 
 ```ts
 import { useEffect, useState } from 'react'
