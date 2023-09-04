@@ -33,21 +33,80 @@ npm run dev
 #### Retorna a cifra de uma música
 
 ```http
-  GET /api/chord
+  GET /api/chord/${artist}/${music}
 ```
 
-| Parâmetro | Tipo     | Descrição                           |
-| :-------- | :------- | :---------------------------------- |
-| `artist`  | `string` | **Obrigatório**. A chave da sua API |
-| `music`   | `string` | **Obrigatório**. A chave da sua API |
+| Parâmetro | Tipo     | Descrição        |
+| :-------- | :------- | :--------------- |
+| `artist`  | `string` | **Obrigatório**. |
+| `music`   | `string` | **Obrigatório**. |
 
 #### Retorna a cifra simplificada de uma música
 
 ```http
-  GET /api/chord/simplified
+  GET /api/chord/simplified/${artist}/${music}
 ```
 
-| Parâmetro | Tipo     | Descrição                           |
-| :-------- | :------- | :---------------------------------- |
-| `artist`  | `string` | **Obrigatório**. A chave da sua API |
-| `music`   | `string` | **Obrigatório**. A chave da sua API |
+| Parâmetro | Tipo     | Descrição        |
+| :-------- | :------- | :--------------- |
+| `artist`  | `string` | **Obrigatório**. |
+| `music`   | `string` | **Obrigatório**. |
+
+## exemplo de requisição fetch:
+
+```ts
+fetch(`http://localhost:8000/api/chord/skank/sutilmente/`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Erro na requisição')
+        }
+        return response.json()
+    })
+    .then((data) => {
+        setMusic(data.cipher)
+    })
+    .catch((error) => {
+        console.error('Erro:', error)
+    })
+```
+
+## exemplo de requisição axios:
+
+```ts
+axios
+    .get('http://localhost:8000/api/chord/skank/sutilmente/')
+    .then((res) => {
+        setMusic(res.data.cipher)
+    })
+    .catch((error) => {
+        console.error('Erro:', error)
+    })
+```
+
+## exemplo de uso em ReactJS:
+
+```ts
+import { useEffect, useState } from 'react'
+
+export default function Music() {
+    const [music, setMusic] = useState<string>('')
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/api/chord/skank/sutilmente/`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição')
+                }
+                return response.json()
+            })
+            .then((data) => {
+                setMusic(data.cipher)
+            })
+            .catch((error) => {
+                console.error('Erro:', error)
+            })
+    }, [])
+
+    return <div dangerouslySetInnerHTML={{ __html: music }}></div>
+}
+```
