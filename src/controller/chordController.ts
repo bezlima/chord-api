@@ -4,7 +4,7 @@ const { getChord } = require('../services/getChord')
 
 async function getChordController(req: express.Request, res: express.Response) {
     try {
-        const validData = getChordSchema.parse(req.body)
+        const validData = getChordSchema.parse(req.params)
 
         const chordReturn = await getChord(validData)
 
