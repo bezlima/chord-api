@@ -5,23 +5,8 @@ function parseHTML(html: any) {
 
     $Chord('.tablatura').remove()
 
-    const formattedHTML = `
-        <div style="display: flex; flex-direction: column;">
-          ${$Chord('pre').html()}
-        <div>
-    `
-    // const $ = cheerio.load(html)
-    // $('div').each((index: any, element: any) => {
-    //     const content = $(element).html()
-    //     const replacedContent = content.replace(/\n/g, '</div><div>')
-    //     const replacedSpacesContent = replacedContent.replace(/\s+/g, '&nbsp;')
-    //     $(element).html(`<div>${replacedSpacesContent}</div>`)
-    // })
-    // const modifiedHtml = $.html()
+    const formattedHTML = `${$Chord('pre').html().replace(/ /g, '&nbsp;').replace(/\n/g, '<br>')}`
 
-    // organizar retorno melhor para interface
-
-    console.log('modificar html', formattedHTML)
     return formattedHTML
 }
 
